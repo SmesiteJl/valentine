@@ -76,8 +76,8 @@ let init = function () {
     for (i = 0; i < pointsOrigin.length; i++) {
       // Влияние положения мыши усиливается коэффициентом 0.15
       targetPoints[i] = [];
-      targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2 + (mouseX - width / 2) * 0.15;
-      targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2 + (mouseY - height / 2) * 0.15;
+      targetPoints[i][0] = kx * pointsOrigin[i][0] + width / 2 + (mouseX - width / 2) * 0.3;
+      targetPoints[i][1] = ky * pointsOrigin[i][1] + height / 2 + (mouseY - height / 2) * 0.3;
     }
   };
 
@@ -172,3 +172,92 @@ let init = function () {
 let s = document.readyState;
 if (s === 'complete' || s === 'loaded' || s === 'interactive') init();
 else document.addEventListener('DOMContentLoaded', init, false);
+// Звёздный фон
+function createStars() {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+  
+  const stars = Array(150).fill().map(() => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 1.5,
+    opacity: Math.random() * 0.5 + 0.5,
+    speed: Math.random() * 0.05
+  }));
+
+  function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, width, height);
+    
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+      
+      star.y += star.speed;
+      if (star.y > height) {
+        star.y = 0;
+        star.x = Math.random() * width;
+      }
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+  
+  animate();
+}
+
+// Вызвать создание звёзд после init()
+setTimeout(createStars, 100);// Звёздный фон
+function createStars() {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+  
+  const stars = Array(150).fill().map(() => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 1.5,
+    opacity: Math.random() * 0.5 + 0.5,
+    speed: Math.random() * 0.05
+  }));
+
+  function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, width, height);
+    
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+      
+      star.y += star.speed;
+      if (star.y > height) {
+        star.y = 0;
+        star.x = Math.random() * width;
+      }
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+  
+  animate();
+}
+
+// Вызвать создание звёзд после init()
+setTimeout(createStars, 100);
