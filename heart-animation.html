@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>💓💌💓 </title>
+    <meta charset="UTF-8">
+    <meta name="Keywords" content="Valentine, Heart Animation, Card">
+    <meta name="Description" content="Beautiful heart animation valentine card">
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        /* Анимированный градиент для фона */
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ff9a9e);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+      }
+      @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      /* Надпись теперь расположена ниже сердца и имеет романтичный расписной курсив */
+      #greeting {
+        position: absolute;
+        top: 85%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.5em;
+        font-weight: 500;
+        color: #ff0055;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+        text-align: center;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <canvas id="heart"></canvas>
+    <div id="greeting">С днем святого валентина 💞 <br> ⸜(｡˃ ᵕ ˂ )⸝♡</div>
+    <script src="heart-animation.js"></script>
+  </body>
+</html>
